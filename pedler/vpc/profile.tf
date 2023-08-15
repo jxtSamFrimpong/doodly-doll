@@ -10,5 +10,5 @@ terraform {
 # Configure the AWS Provider
 provider "aws" {
   region  = lookup(var.aws_provider_conf, "region", "us-east-1")
-  profile = lookup(var.aws_provider_conf, "profile", "defult")
+  profile = lookup(var.aws_provider_conf, "profile", "default")
 }

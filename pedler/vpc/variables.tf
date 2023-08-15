@@ -9,6 +9,7 @@ variable "vpc_conf" {
   #     }
   #   }
   default = {
+    "name"                 = "pedler"
     "cidr"                 = "10.0.0.0/16"
     "tenancy"              = "default"
     "enable_dns_support"   = true
@@ -45,4 +46,28 @@ variable "azs" {
   type        = list(string)
   description = "Availability Zones"
   default     = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+}
+
+variable "aws_network_acl" {
+  type = map(any)
+  default = {
+    "ingress" = [
+      {
+        "action"    = "allow"
+        "rule_no"   = 500
+        "cidr"      = "217.23.3.171/32"
+        "from_port" = 22
+        "to_port"   = 22
+      }
+    ]
+    "egress" = [
+      {
+        "action"    = "allow"
+        "rule_no"   = 500
+        "cidr"      = "217.23.3.171/32"
+        "from_port" = 22
+        "to_port"   = 22
+      }
+    ]
+  }
 }

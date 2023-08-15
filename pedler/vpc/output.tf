@@ -50,3 +50,22 @@ output "subnets" {
     }
   }
 }
+
+output "nacl" {
+  value = {
+    "private" = {
+      "id"         = aws_network_acl.private.id
+      "arn"        = aws_network_acl.private.arn
+      "subnet_ids" = aws_network_acl.private.subnet_ids
+      "ingress"    = aws_network_acl.private.ingress
+      "egress"     = aws_network_acl.private.egress
+    }
+    "public" = {
+      "id"         = aws_network_acl.public.id
+      "arn"        = aws_network_acl.public.arn
+      "subnet_ids" = aws_network_acl.public.subnet_ids
+      "ingress"    = aws_network_acl.public.ingress
+      "egress"     = aws_network_acl.public.egress
+    }
+  }
+}
