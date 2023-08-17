@@ -39,10 +39,6 @@ resource "aws_route_table_association" "public_subnet_asso" {
 }
 
 resource "aws_route_table_association" "private_subnet_asso" {
-  #   for_each = {
-  #     for id in aws_subnet.private_subnets[*].id :
-  #     id => id
-  #   }
   count          = length(aws_subnet.private_subnets)
   subnet_id      = aws_subnet.private_subnets[count.index].id
   route_table_id = aws_route_table.private.id

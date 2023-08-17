@@ -1,12 +1,12 @@
 locals {
   allowed_ips_ingress = { for idx, val in concat(var.aws_network_acl["ingress"], [{
     "action"  = "allow"
-    "rule_no" = 1
+    "rule_no" = 100
     "cidr"    = var.vpc_conf["cidr"]
   }]) : idx => val }
   allowed_ips_egress = { for idx, val in concat(var.aws_network_acl["egress"], [{
     "action"  = "allow"
-    "rule_no" = 1
+    "rule_no" = 100
     "cidr"    = var.vpc_conf["cidr"]
   }]) : idx => val }
 }
@@ -15,21 +15,21 @@ resource "aws_network_acl" "private" {
   vpc_id = aws_vpc.main.id
 
   ingress {
-    protocol   = "tcp"
+    protocol   = "-1"
     rule_no    = 1
     action     = "allow"
     cidr_block = var.vpc_conf["cidr"]
     from_port  = 0
-    to_port    = 65535
+    to_port    = 0
   }
 
   egress {
-    protocol   = "tcp"
+    protocol   = "-1"
     rule_no    = 1
     action     = "allow"
     cidr_block = var.vpc_conf["cidr"]
     from_port  = 0
-    to_port    = 65535
+    to_port    = 0
   }
 
   tags       = var.tags

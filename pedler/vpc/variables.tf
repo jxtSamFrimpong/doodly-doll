@@ -54,19 +54,20 @@ variable "aws_network_acl" {
     "ingress" = [
       {
         "action"    = "allow"
-        "rule_no"   = 500
-        "cidr"      = "217.23.3.171/32"
+        "rule_no"   = 200
+        "cidr"      = "102.176.65.39/32"
         "from_port" = 22
         "to_port"   = 22
       }
     ]
     "egress" = [
       {
+        "protocol"  = "-1"
         "action"    = "allow"
-        "rule_no"   = 500
-        "cidr"      = "217.23.3.171/32"
-        "from_port" = 22
-        "to_port"   = 22
+        "rule_no"   = 200
+        "cidr"      = "0.0.0.0/0"
+        "from_port" = 0
+        "to_port"   = 0
       }
     ]
   }
